@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Badges Woo
  * Description: Show badges for each product on your store
- * Version: 1.0.8
+ * Version: 1.0.9
  * Author: TaxarPro
  * Author URI: https://taxarpro.com
  * Text Domain: badges-woo
  * Domain Path: /languages
  * WC requires at least: 3.0
- * WC tested up to: 4.1.0
+ * WC tested up to: 5.3.0
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
     define('WOOBADGES_URL', plugin_dir_url( __FILE__ ));
     define('WOOBADGES_PATH', plugin_dir_path( __FILE__ ));
-    define('WOOBADGES_VERSION', '1.0.8');
+    define('WOOBADGES_VERSION', '1.0.9');
     if(!class_exists('WOOBADGES')) {
         class WOOBADGES {
     

@@ -3,9 +3,9 @@ Contributors: taxarpro, DanielRiera
 Donate link: https://paypal.me/taxarpro
 Tags: badges, custom, conversion
 Requires at least: 3.5
-Tested up to: 5.4
+Tested up to: 5.7.2
 Requires PHP: 5.0
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,6 +44,9 @@ It is a good technique to use the background color of the badge with some color 
 Yes! you can use emojis on your custom badges
 
 == Changelog ==
+
+= 1.0.9 =
+* Update compatibility with WP 5.7.2
 
 = 1.0.8 =
 * Fix error when select position none :P
