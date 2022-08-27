@@ -36,7 +36,7 @@ $positions = WOOBADGES::get_positions();
         <div class="woobadges-input">
             <h4><?=__('Text', 'badges-woo')?></h4>
             <input type="text" name="woobadges_text" placeholder="Sale Off 50%" value="<?= isset($woobadges_values['text']) ? $woobadges_values['text'] : '' ?>" />
-            <p class="description"><?= __('You can insert emojis, <a target="_blank" href="https://taxarpro.com/en/emojis-for-your-website/">see link</a>', 'badges-woo')?></p>
+            <p class="description"><?= __('You can insert emojis, <a target="_blank" href="https://getemoji.com/">see link</a>', 'badges-woo')?></p>
         </div>
 
         <div class="woobadges-input">

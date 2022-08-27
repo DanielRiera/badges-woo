@@ -4,7 +4,7 @@ msgstr ""
 "POT-Creation-Date: 2020-05-09 16:20+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Daniel Riera <daniel@taxapro.com>\n"
-"Language-Team: TaxarPro\n"
+"Language-Team: DanielRiera\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,10 +29,10 @@ msgstr "Texto"
 
 #: product_metabox.php:39
 msgid ""
-"You can insert emojis, <a target=\"_blank\" href=\"https://taxarpro.com/en/"
+"You can insert emojis, <a target=\"_blank\" href=\"https://getemoji.com/"
 "emojis-for-your-website/\">see link</a>"
 msgstr ""
-"Puedes insertar emojis, <a target=\"_blank\" href=\"https://taxarpro.com/"
+"Puedes insertar emojis, <a target=\"_blank\" href=\"https://getemoji.com/"
 "es/emojis-para-web/\">mira este enlace</a>"
 
 #: product_metabox.php:43

@@ -1,13 +1,11 @@
 === Badges Woo ===
-Contributors: taxarpro, DanielRiera
-Donate link: https://paypal.me/taxarpro
+Contributors: DanielRiera
+Donate link: https://www.paypal.com/donate/?hosted_button_id=EZ67DG78KMXWQ
 Tags: badges, custom, conversion
 Requires at least: 3.5
-Tested up to: 5.7.2
+Tested up to: 6.0.1
 Requires PHP: 5.0
-Stable tag: 1.0.9
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Stable tag: 1.1.0
 
  
 == Description ==
@@ -27,7 +25,7 @@ It is a good technique to use the background color of the badge with some color 
 - Font Size
 - Text Color
 - Opacity
-- Emoji Ready [See link](https://taxarpro.com/en/emojis-for-your-website/)
+- Emoji Ready [See link](https://getemoji.com/)
 - Work with any theme
 - Fast and easy
 
@@ -44,6 +42,9 @@ It is a good technique to use the background color of the badge with some color 
 Yes! you can use emojis on your custom badges
 
 == Changelog ==
+
+= 1.1.0 =
+* Update compatibility with WP 6
 
 = 1.0.9 =
 * Update compatibility with WP 5.7.2
