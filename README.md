@@ -122,6 +122,9 @@ Yes. Translation files are included in `/languages`, and the plugin uses the `ba
 
 == Changelog ==
 
+= 1.2.1 = 
+-  Declare compatibility with Custom order table WooCommerce
+
 = 1.2.0 =
 
 - Updated compatibility for WordPress `6.9.4`
