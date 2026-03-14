@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Badges Woo
  * Description: Show badges for each product on your store
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: Daniel Riera
  * Author URI: https://danielriera.net
  * Text Domain: badges-woo
@@ -41,7 +41,12 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                 add_action( 'add_meta_boxes', array($this, 'metabox_product_badge') );
                 add_action( 'admin_menu', array($this, 'register_settings_page') );
                 add_action( 'admin_init', array($this, 'register_settings') );
-   
+
+                add_action( 'before_woocommerce_init', function() {
+                    if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+                        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+                    }
+                } );
             }
 
             function load_text_domain() {

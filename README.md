@@ -2,7 +2,7 @@
 Contributors: DanielRiera
 Donate link: https://www.paypal.com/donate/?hosted_button_id=EZ67DG78KMXWQ
 Tags: badges, woocommerce, product badges, sales, conversion
-Version: 1.2.0
+Version: 1.2.1
 Requires at least: 5.0
 Tested up to: 6.9.4
 WC requires at least: 3.0
@@ -10,7 +10,7 @@ WC tested up to: 10.6.1
 Required WP: 5.0
 Tested WP: 6.9.4
 Requires PHP: 8.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -64,7 +64,6 @@ The plugin is designed to work on shop loops, category archives, tag archives, a
   - `burst`
 - Adjustable colors, opacity, font size, font weight, and single product zoom
 - Emoji support
-- Translation-ready with the `badges-woo` text domain
 
 = Badge priority =
 
