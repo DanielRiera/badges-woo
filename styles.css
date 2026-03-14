@@ -26,6 +26,76 @@
     background: #333;
 }
 
+.badge.badge-shape-rounded {
+    border-radius: 18px;
+}
+
+.badge.badge-shape-pill {
+    border-radius: 999px;
+}
+
+.badge.badge-shape-circle {
+    min-width: 72px;
+    min-height: 72px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 10px;
+}
+
+.badge.badge-shape-diamond {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    padding: 18px 20px;
+}
+
+.badge.badge-shape-diamond::before,
+.badge.badge-shape-diamond::after {
+    display: none;
+}
+
+.badge.badge-shape-star {
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    padding: 22px 18px;
+}
+
+.badge.badge-shape-hexagon {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    padding: 16px 20px;
+}
+
+.badge.badge-shape-ticket {
+    clip-path: polygon(0 0, 100% 0, 100% 28%, 92% 36%, 100% 44%, 100% 100%, 0 100%, 0 44%, 8% 36%, 0 28%);
+    padding: 14px 18px;
+}
+
+.badge.badge-shape-bookmark {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
+    padding: 12px 16px 18px;
+}
+
+.badge.badge-shape-burst {
+    clip-path: polygon(50% 0%, 62% 12%, 78% 4%, 82% 20%, 98% 18%, 90% 34%, 100% 50%, 90% 66%, 98% 82%, 82% 80%, 78% 96%, 62% 88%, 50% 100%, 38% 88%, 22% 96%, 18% 80%, 2% 82%, 10% 66%, 0% 50%, 10% 34%, 2% 18%, 18% 20%, 22% 4%, 38% 12%);
+    padding: 20px 18px;
+}
+
+.badge.badge-shape-circle::before,
+.badge.badge-shape-circle::after,
+.badge.badge-shape-diamond::before,
+.badge.badge-shape-diamond::after,
+.badge.badge-shape-star::before,
+.badge.badge-shape-star::after,
+.badge.badge-shape-hexagon::before,
+.badge.badge-shape-hexagon::after,
+.badge.badge-shape-ticket::before,
+.badge.badge-shape-ticket::after,
+.badge.badge-shape-bookmark::before,
+.badge.badge-shape-bookmark::after,
+.badge.badge-shape-burst::before,
+.badge.badge-shape-burst::after {
+    display: none;
+}
+
 .badge:not(.left):not(.right)::before, .badge:not(.left):not(.right)::after {
     content: '';
     position: absolute;
@@ -102,6 +172,18 @@
     text-align: center;
 }
 
+.badge.top-left {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+}
+
+.badge.top-right {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
 .badge.center {
     position: absolute;
     top: 50%;
@@ -113,12 +195,42 @@
     transform: translateX(0%) translateY(-50%) rotate(0deg);
 }
 
+.badge.center-left {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.badge.center-right {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
 .badge.bottom {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     text-align: center;
+}
+
+.badge.bottom-left {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+}
+
+.badge.bottom-right {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
 }
 
 .badge.left {

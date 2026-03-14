@@ -6,7 +6,6 @@ jQuery(document).ready(function($){
 
         setTimeout(function(){
             var flexBoxW = $(".flex-viewport .flex-active-slide").first().width();
-            console.log(flexBoxW, 'holaaa');
             $(".master-badge-container").css({
                 position: 'sticky',
                 zIndex: 1,
