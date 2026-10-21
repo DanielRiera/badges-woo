@@ -2,21 +2,24 @@
 /**
  * Plugin Name: Badges Woo
  * Description: Show badges for each product on your store
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: Daniel Riera
  * Author URI: https://danielriera.net
  * Text Domain: badges-woo
  * Domain Path: /languages
  * WC requires at least: 3.0
  * WC tested up to: 10.6.1
+ * Requires at least: 5.0
+ * Requires PHP: 8.0
  * Required WP: 5.0
- * Tested WP: 6.9.4
+ * Tested WP: 7.1.3
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
-if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+add_action('plugins_loaded', function() {
+    if(!class_exists('WooCommerce')) { return; }
     define('WOOBADGES_URL', plugin_dir_url( __FILE__ ));
     define('WOOBADGES_PATH', plugin_dir_path( __FILE__ ));
-    define('WOOBADGES_VERSION', '1.2.0');
+    define('WOOBADGES_VERSION', '1.2.2');
     if(!class_exists('WOOBADGES')) {
         class WOOBADGES {
     
@@ -37,7 +40,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                 
                 add_action( 'wp_enqueue_scripts', array($this, 'load_styles') );
                 add_action( 'admin_enqueue_scripts', array($this, 'load_script_admin') );
-                add_action('save_post', array($this, 'save_badges_product'));
+                add_action('save_post_product', array($this, 'save_badges_product'));
                 add_action( 'add_meta_boxes', array($this, 'metabox_product_badge') );
                 add_action( 'admin_menu', array($this, 'register_settings_page') );
                 add_action( 'admin_init', array($this, 'register_settings') );
@@ -132,9 +135,11 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                 $values['text'] = sanitize_text_field($values['text']);
                 $values['background'] = sanitize_hex_color($values['background']) ? sanitize_hex_color($values['background']) : $defaults['background'];
                 $values['color'] = sanitize_hex_color($values['color']) ? sanitize_hex_color($values['color']) : $defaults['color'];
-                $values['fontSize'] = sanitize_text_field($values['fontSize']);
-                $values['zoomSingleProduct'] = sanitize_text_field($values['zoomSingleProduct']);
-                $values['fontWeight'] = sanitize_text_field($values['fontWeight']);
+                $font_size = sanitize_text_field($values['fontSize']);
+                $values['fontSize'] = preg_match('/^(?:\d+(?:\.\d+)?|\.\d+)(?:px|em|rem|%|pt|vw|vh)$/i', $font_size) ? $font_size : $defaults['fontSize'];
+                $values['zoomSingleProduct'] = $values['zoomSingleProduct'] === '' ? $defaults['zoomSingleProduct'] : (string) max(0.5, min(5, floatval($values['zoomSingleProduct'])));
+                $font_weight = sanitize_text_field($values['fontWeight']);
+                $values['fontWeight'] = preg_match('/^(?:normal|bold|bolder|lighter|[1-9][0-9]{0,2}|1000)$/', $font_weight) ? $font_weight : $defaults['fontWeight'];
                 $values['showSingle'] = empty($values['showSingle']) ? '' : '1';
 
                 return $values;
@@ -161,6 +166,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
             }
 
             function get_badge_values($product) {
+                if(!$product instanceof WC_Product) { return false; }
+
                 $woobadges_values = get_post_meta($product->get_id(), 'woobadge_product', true);
                 $product_badge = $this->resolve_badge_values($product, $woobadges_values);
 
@@ -236,6 +243,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
             function get_preset_badge_values($product, $preset_id) {
                 foreach(self::get_presets() as $preset) {
                     if(empty($preset['id']) or $preset['id'] != $preset_id) { continue; }
+                    if(isset($preset['enabled']) && empty($preset['enabled'])) { return false; }
 
                     return $this->resolve_badge_values($product, $preset);
                 }
@@ -245,8 +253,11 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
             function get_automatic_preset_badge_values($product) {
                 foreach(self::get_presets() as $preset) {
+                    if(isset($preset['enabled']) && empty($preset['enabled'])) { continue; }
                     if(empty($preset['autoApply'])) { continue; }
                     if(empty($preset['automaticRule']) or $preset['automaticRule'] == 'none') { continue; }
+
+                    if(!$this->match_automatic_rule($product, $preset['automaticRule'])) { continue; }
 
                     $preset_badge = $this->resolve_badge_values($product, $preset);
 
@@ -345,7 +356,12 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                     return $html;
                 }
 
-                return $this->get_badge_values($product) ? '' : $html;
+                $badge = $this->get_badge_values($product);
+
+                if(!$badge || is_admin() || is_cart()) { return $html; }
+                if(is_product() && $product->get_id() == get_queried_object_id() && empty($badge['showSingle'])) { return $html; }
+
+                return '';
             }
 
             function show_on_single_product($image, $attchID){
@@ -416,6 +432,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                     return $sanitized;
                 }
 
+                $used_ids = array();
+
                 foreach($presets as $preset) {
                     if(!is_array($preset)) { continue; }
 
@@ -423,9 +441,17 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                     if($name === '') { continue; }
 
                     $sanitized_preset = $this->sanitize_badge_values($preset);
-                    $sanitized_preset['id'] = isset($preset['id']) && $preset['id'] !== '' ? sanitize_title($preset['id']) : sanitize_title($name);
+                    $preset_id = isset($preset['id']) ? sanitize_title($preset['id']) : '';
+                    if($preset_id === '' || isset($used_ids[$preset_id])) {
+                        do {
+                            $preset_id = wp_generate_uuid4();
+                        } while(isset($used_ids[$preset_id]));
+                    }
+                    $used_ids[$preset_id] = true;
+                    $sanitized_preset['id'] = $preset_id;
                     $sanitized_preset['name'] = $name;
                     $sanitized_preset['autoApply'] = empty($preset['autoApply']) ? '' : '1';
+                    $sanitized_preset['enabled'] = !isset($preset['enabled']) || !empty($preset['enabled']) ? '1' : '0';
 
                     $sanitized[] = $sanitized_preset;
                 }
@@ -434,37 +460,20 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
             }
     
             function save_badges_product($post_id){
-    
-                if ( ! current_user_can( 'manage_options' ) ) {
-                    return;
-                }
-                if(isset($_POST['woobadges_position'])) {
-                    $position = sanitize_text_field($_POST['woobadges_position']);
-                        $badgeInfo = array(
-                            'position' => $position,
-                            'opacity' => sanitize_text_field($_POST['woobadges_opacity']),
-                            'text' => sanitize_text_field($_POST['woobadges_text']),
-                            'background' => sanitize_text_field($_POST['woobadges_background']),
-                            'color' => sanitize_text_field($_POST['woobadges_color']),
-                            'fontSize' => sanitize_text_field($_POST['woobadges_fontSize']),
-                            'zoomSingleProduct' => sanitize_text_field($_POST['woobadges_zoomSingleProduct']),
-                            'fontWeight' => sanitize_text_field( $_POST['woobadges_fontWeight'] ),
-                            'shape' => isset($_POST['woobadges_shape']) ? sanitize_text_field($_POST['woobadges_shape']) : 'default',
-                            'source' => isset($_POST['woobadges_source']) ? sanitize_text_field($_POST['woobadges_source']) : 'manual',
-                            'automaticRule' => isset($_POST['woobadges_automaticRule']) ? sanitize_text_field($_POST['woobadges_automaticRule']) : 'none',
-                            'preset' => isset($_POST['woobadges_preset']) ? sanitize_text_field($_POST['woobadges_preset']) : ''
-                        );
-                        
+                if((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || wp_is_post_revision($post_id) || wp_is_post_autosave($post_id)) { return; }
+                if(get_post_type($post_id) !== 'product' || !current_user_can('edit_post', $post_id)) { return; }
+                if(!isset($_POST['woobadges_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['woobadges_nonce'])), 'woobadges_save_product')) { return; }
+                if(!isset($_POST['woobadges_position'])) { return; }
 
-                        if(isset($_POST['woobadges_showSingle'])) {
-                            $badgeInfo['showSingle'] = '1';
-                        }
-                        $sanitized_badge = $this->sanitize_badge_values($badgeInfo);
-                        $sanitized_badge['preset'] = isset($_POST['woobadges_preset']) ? sanitize_text_field($_POST['woobadges_preset']) : '';
-                        update_post_meta($post_id, 'woobadge_product', $sanitized_badge);
+                $badgeInfo = self::get_default_badge_data();
+                foreach($badgeInfo as $key => $default) {
+                    $field = 'woobadges_' . $key;
+                    $badgeInfo[$key] = isset($_POST[$field]) ? sanitize_text_field(wp_unslash($_POST[$field])) : $default;
                 }
-    
-    
+                $badgeInfo['showSingle'] = isset($_POST['woobadges_showSingle']) ? '1' : '';
+                $sanitized_badge = $this->sanitize_badge_values($badgeInfo);
+                $sanitized_badge['preset'] = isset($_POST['woobadges_preset']) ? sanitize_text_field(wp_unslash($_POST['woobadges_preset'])) : '';
+                update_post_meta($post_id, 'woobadge_product', wp_slash($sanitized_badge));
             }
             function show_config_product(){
                 require_once(WOOBADGES_PATH . 'product_metabox.php');
@@ -475,17 +484,44 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
             }
     
             function load_styles() {
-                wp_enqueue_style( 'badge-styles', WOOBADGES_URL . 'styles.css?v=' . WOOBADGES_VERSION );
-                wp_enqueue_script( 'woobadges-script', plugins_url('frontend.scripts.js', __FILE__ ) . '?v=' . WOOBADGES_VERSION, array( 'jquery','flexslider' ), false, true );
+                wp_enqueue_style( 'badge-styles', WOOBADGES_URL . 'styles.css', array(), WOOBADGES_VERSION );
+                if(!is_product()) { return; }
+                wp_enqueue_script( 'woobadges-script', plugins_url('frontend.scripts.js', __FILE__ ), array( 'jquery' ), WOOBADGES_VERSION, true );
 
             }
             function load_script_admin(){
+                $screen = get_current_screen();
+                if(!$screen || !(($screen->base === 'post' && $screen->post_type === 'product') || $screen->id === 'woocommerce_page_woobadges-settings')) { return; }
+
                 wp_enqueue_style( 'wp-color-picker' );
-                wp_enqueue_script( 'woobadges-admin-script', plugins_url('scripts.js', __FILE__ ) . '?v=' . WOOBADGES_VERSION, array( 'wp-color-picker' ), false, true );
+                wp_enqueue_script( 'woobadges-admin-script', plugins_url('scripts.js', __FILE__ ), array( 'wp-color-picker' ), WOOBADGES_VERSION, true );
+                if($screen->id === 'woocommerce_page_woobadges-settings') {
+                    wp_enqueue_style('badge-styles', WOOBADGES_URL . 'styles.css', array(), WOOBADGES_VERSION);
+                    wp_localize_script('woobadges-admin-script', 'woobadgesAdmin', array(
+                        'newPreset' => __('New preset', 'badges-woo'),
+                        'disabled' => __('Disabled', 'badges-woo'),
+                        'hidden' => __('Hidden: choose a position', 'badges-woo'),
+                        'global' => __('Global application', 'badges-woo'),
+                        'assigned' => __('Product assignment', 'badges-woo'),
+                        'globalHelp' => __('Applies to all products matching: %s. Higher-priority product badges and selected presets win.', 'badges-woo'),
+                        'conditionalHelp' => __('When assigned to a product, appears only if it matches: %s.', 'badges-woo'),
+                        'manualHelp' => __('Appears with your custom text when selected in a product. The condition does not restrict this manual assignment.', 'badges-woo'),
+                        'fallbackHelp' => __('With empty text, the condition must match and its label is used.', 'badges-woo'),
+                        'disabledHelp' => __('This preset is disabled. Its design and assignments are kept; other eligible presets may apply instead.', 'badges-woo'),
+                        'ruleRequired' => __('Choose a condition for automatic application.', 'badges-woo'),
+                        'textRequired' => __('Enter badge text or choose a condition to use its label.', 'badges-woo'),
+                        'preview' => __('Badge text', 'badges-woo'),
+                        'copyName' => __('%s (copy)', 'badges-woo'),
+                        'unsaved' => __('Unsaved changes', 'badges-woo'),
+                        'remove' => __('Remove this preset? Products assigned to it may use a matching global preset instead. This takes effect after saving.', 'badges-woo')
+                    ));
+                }
+
             }
     
         }
         
+        global $WOOBADGES;
         $WOOBADGES = new WOOBADGES();
     }   
-}
+}, 0);

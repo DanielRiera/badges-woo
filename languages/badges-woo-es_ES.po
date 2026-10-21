@@ -21,7 +21,7 @@ msgstr "Ninguno"
 
 #: product_metabox.php:17 settings-page.php:11 woobadges.php:211
 msgid "Sale"
-msgstr "Venta"
+msgstr "Oferta"
 
 #: product_metabox.php:18 settings-page.php:12 woobadges.php:212
 msgid "Featured"
@@ -76,7 +76,7 @@ msgstr "Forma"
 
 #: product_metabox.php:80 settings-page.php:43 settings-page.php:143
 msgid "Preset"
-msgstr "Preajuste"
+msgstr "Predefinido"
 
 #: product_metabox.php:87
 msgid "If the product badge does not apply, the selected preset will be used."
@@ -132,7 +132,7 @@ msgstr ""
 
 #: settings-page.php:23
 msgid "Add preset"
-msgstr "Añadir ajuste preestablecido"
+msgstr "Añadir predefinido"
 
 #: settings-page.php:28
 msgid "General settings"
@@ -192,3 +192,240 @@ msgstr "Ampliación de un solo producto"
 #: woobadges.php:379
 msgid "Badge Configuration"
 msgstr "Configuración de Badge"
+
+msgid "New preset"
+msgstr "Nuevo predefinido"
+
+msgid "Move up"
+msgstr "Subir"
+
+msgid "Move down"
+msgstr "Bajar"
+
+msgid "Duplicate"
+msgstr "Duplicar"
+
+msgid "Enable preset"
+msgstr "Activar predefinido"
+
+msgid "Disable to stop using this preset everywhere without deleting its design or product assignments."
+msgstr "Desactívalo para dejar de usarlo en toda la tienda sin borrar su diseño ni sus asignaciones a productos."
+
+msgid "When does it apply?"
+msgstr "¿Cuándo se aplica?"
+
+msgid "When selected in a product"
+msgstr "Al seleccionarlo en un producto"
+
+msgid "Use custom text"
+msgstr "Usar texto personalizado"
+
+msgid "Only when the rule matches"
+msgstr "Solo cuando se cumpla la condición"
+
+msgid "Custom text is used as written. Leave it empty to use the rule label, such as Sale or New, when the rule matches."
+msgstr "Se muestra el texto que escribas. Déjalo vacío para usar el nombre de la condición, como Oferta o Nuevo, cuando se cumpla."
+
+msgid "Product condition"
+msgstr "Condición del producto"
+
+msgid "Apply to all products matching this condition"
+msgstr "Aplicar a todos los productos que cumplan esta condición"
+
+msgid "No product assignment is needed. A product badge or a selected preset takes priority. The first matching global preset in this list wins."
+msgstr "No hace falta asignarlo a cada producto. Tienen prioridad el badge propio del producto y el predefinido seleccionado. Se usa el primer predefinido global de esta lista que cumpla su condición."
+
+msgid "Appearance and visibility"
+msgstr "Diseño y visibilidad"
+
+msgid "Design preview. Rules are evaluated for each product on the storefront."
+msgstr "Vista previa del diseño. Las condiciones se comprueban para cada producto en la tienda."
+
+msgid "Choose a visible position. None hides this preset in both product lists and product pages."
+msgstr "Elige una posición visible. Ninguno oculta este predefinido tanto en los listados como en las fichas de producto."
+
+msgid "Also show on the product page"
+msgstr "Mostrar también en la ficha del producto"
+
+msgid "Product lists show the badge when it applies. Enable this option to also show it over the main product gallery."
+msgstr "El badge se muestra en los listados cuando corresponde. Activa esta opción para mostrarlo también sobre la galería principal de la ficha."
+
+msgid "Create a design once, assign it to products or apply it automatically with a condition."
+msgstr "Crea un diseño y asígnalo a productos concretos o aplícalo automáticamente mediante una condición."
+
+msgid "Which badge is shown?"
+msgstr "¿Qué badge se muestra?"
+
+msgid "Product badge: the badge configured directly in the product is checked first."
+msgstr "Badge del producto: primero se comprueba el badge configurado directamente en el producto."
+
+msgid "Selected preset: used when the product badge does not apply. Select it in the product badge settings."
+msgstr "Predefinido seleccionado: se usa si no corresponde mostrar el badge del producto. Se selecciona en los ajustes de badges del producto."
+
+msgid "Global preset: if neither applies, the first enabled preset matching its global condition is used, from top to bottom."
+msgstr "Predefinido global: si no se aplica ninguno de los anteriores, se usa el primer predefinido activo que cumpla su condición global, de arriba abajo."
+
+msgid "Only one badge is chosen. Its own visibility setting determines whether it also appears on the product page; a hidden badge does not trigger another preset."
+msgstr "Solo se elige un badge. Su propio ajuste de visibilidad determina si también aparece en la ficha del producto; ocultarlo en la ficha no hace que se elija otro predefinido."
+
+msgid "Examples: manual assignment and automatic application"
+msgstr "Ejemplos: asignación manual y aplicación automática"
+
+msgid "Manual: enter Limited edition, choose a position, leave the condition as None and global application off. Save, then select this preset in the products you want."
+msgstr "Manual: escribe Edición limitada, elige una posición, deja la condición en Ninguno y desactiva la aplicación global. Guarda y selecciona este predefinido en los productos que quieras."
+
+msgid "Automatic: choose Sale and enable global application. All sale products without a higher-priority badge get this preset. Custom text is optional."
+msgstr "Automático: elige Oferta y activa la aplicación global. Se mostrará en todos los productos en oferta que no tengan un badge de mayor prioridad. El texto personalizado es opcional."
+
+msgid "Conditional assignment: select Only when the rule matches, choose Out of stock and leave global application off. Assign it to specific products; it appears only while they are out of stock."
+msgstr "Asignación con condición: selecciona Solo cuando se cumpla la condición, elige Agotado y desactiva la aplicación global. Asígnalo a productos concretos; solo aparecerá mientras estén agotados."
+
+msgid "New uses products created within the last 30 days by default. Sale follows WooCommerce sale status, Featured follows the featured flag, and Out of stock follows stock availability."
+msgstr "Nuevo incluye por defecto los productos creados en los últimos 30 días. Oferta sigue el estado de oferta de WooCommerce; Destacado, la marca de producto destacado; y Agotado, la disponibilidad de existencias."
+
+msgid "Hides the native sale badge only when a custom badge is visible in that context. If the custom badge is disabled on the product page, the native sale badge is kept there."
+msgstr "Oculta el distintivo de oferta de WooCommerce solo cuando se muestra un badge personalizado en ese contexto. Si el badge personalizado no se muestra en la ficha, allí se mantiene el distintivo original."
+
+msgid "Your presets"
+msgstr "Tus predefinidos"
+
+msgid "Open a preset to edit it. Move presets up or down to set global priority. Duplicates are created disabled so they do not affect the store until you enable them."
+msgstr "Abre un predefinido para editarlo. Súbelo o bájalo para cambiar su prioridad global. Las copias se crean desactivadas para que no afecten a la tienda hasta que las actives."
+
+msgid "No presets yet. Add your first preset, name it and choose how it applies."
+msgstr "Todavía no hay predefinidos. Añade el primero, dale un nombre y elige cómo se aplica."
+
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+msgid "Creation, edits, order, activation and removal take effect only after saving changes."
+msgstr "La creación, edición, orden, activación y eliminación solo se aplican al guardar los cambios."
+
+msgid "Disabled"
+msgstr "Desactivado"
+
+msgid "Hidden: choose a position"
+msgstr "Oculto: elige una posición"
+
+msgid "Global application"
+msgstr "Aplicación global"
+
+msgid "Product assignment"
+msgstr "Asignación a productos"
+
+msgid "Applies to all products matching: %s. Higher-priority product badges and selected presets win."
+msgstr "Se aplica a todos los productos que cumplan: %s. Tienen prioridad los badges del producto y los predefinidos seleccionados."
+
+msgid "When assigned to a product, appears only if it matches: %s."
+msgstr "Al asignarlo a un producto, solo se muestra si cumple: %s."
+
+msgid "Appears with your custom text when selected in a product. The condition does not restrict this manual assignment."
+msgstr "Se muestra con tu texto personalizado al seleccionarlo en un producto. La condición no limita esta asignación manual."
+
+msgid "With empty text, the condition must match and its label is used."
+msgstr "Con el texto vacío, debe cumplirse la condición y se usa su nombre como texto."
+
+msgid "This preset is disabled. Its design and assignments are kept; other eligible presets may apply instead."
+msgstr "Este predefinido está desactivado. Se conservan su diseño y sus asignaciones; pueden aplicarse otros predefinidos válidos en su lugar."
+
+msgid "Choose a condition for automatic application."
+msgstr "Elige una condición para la aplicación automática."
+
+msgid "Enter badge text or choose a condition to use its label."
+msgstr "Escribe el texto del badge o elige una condición para usar su nombre."
+
+msgid "Badge text"
+msgstr "Texto del badge"
+
+msgid "%s (copy)"
+msgstr "%s (copia)"
+
+msgid "Unsaved changes"
+msgstr "Cambios sin guardar"
+
+msgid "Remove this preset? Products assigned to it may use a matching global preset instead. This takes effect after saving."
+msgstr "¿Eliminar este predefinido? Los productos que lo tengan asignado podrán usar un predefinido global que cumpla su condición. Se aplicará al guardar."
+
+msgid "Priority: product badge, selected preset, then the first matching global preset. To use a preset, set the product position to None and select a preset below. None only disables the product badge, not presets."
+msgstr "Prioridad: badge del producto, predefinido seleccionado y primer predefinido global que cumpla su condición. Para usar un predefinido, elige Ninguno en la posición del producto y selecciona el predefinido más abajo. Ninguno solo desactiva el badge propio, no los predefinidos."
+
+msgid "The selected preset is checked only when the product badge does not apply. Its own condition and visibility settings are used. If it is disabled or does not apply, global presets are checked."
+msgstr "El predefinido seleccionado solo se comprueba si no se aplica el badge del producto. Se usan su propia condición y su visibilidad. Si está desactivado o no se aplica, se comprueban los predefinidos globales."
+
+msgid "Manual source with text ignores this condition. Automatic source requires a matching condition. Empty text uses the condition label when it matches."
+msgstr "El origen manual con texto ignora esta condición. El origen automático exige que se cumpla. Con el texto vacío se usa el nombre de la condición cuando se cumple."
+
+msgid "Center"
+msgstr "Centro"
+
+msgid "Top"
+msgstr "Arriba"
+
+msgid "Left"
+msgstr "Izquierda"
+
+msgid "Bottom"
+msgstr "Abajo"
+
+msgid "Right"
+msgstr "Derecha"
+
+msgid "Top left ribbon"
+msgstr "Cinta superior izquierda"
+
+msgid "Top right ribbon"
+msgstr "Cinta superior derecha"
+
+msgid "Bottom left ribbon"
+msgstr "Cinta inferior izquierda"
+
+msgid "Bottom right ribbon"
+msgstr "Cinta inferior derecha"
+
+msgid "Top left"
+msgstr "Arriba a la izquierda"
+
+msgid "Top right"
+msgstr "Arriba a la derecha"
+
+msgid "Bottom left"
+msgstr "Abajo a la izquierda"
+
+msgid "Bottom right"
+msgstr "Abajo a la derecha"
+
+msgid "Center left"
+msgstr "Centro a la izquierda"
+
+msgid "Center right"
+msgstr "Centro a la derecha"
+
+msgid "Rectangle"
+msgstr "Rectángulo"
+
+msgid "Rounded"
+msgstr "Redondeado"
+
+msgid "Pill"
+msgstr "Píldora"
+
+msgid "Circle"
+msgstr "Círculo"
+
+msgid "Diamond"
+msgstr "Rombo"
+
+msgid "Star"
+msgstr "Estrella"
+
+msgid "Hexagon"
+msgstr "Hexágono"
+
+msgid "Ticket"
+msgstr "Entrada"
+
+msgid "Bookmark"
+msgstr "Marcapáginas"
+
+msgid "Burst"
+msgstr "Destello"

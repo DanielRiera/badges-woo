@@ -12,6 +12,7 @@ $positions = WOOBADGES::get_positions();
 $shapes = WOOBADGES::get_shapes();
 $automatic_rules = WOOBADGES::get_automatic_rules();
 $preset_options = $this->get_preset_options();
+wp_nonce_field('woobadges_save_product', 'woobadges_nonce');
 $automatic_rule_labels = array(
     'none' => __('None', 'badges-woo'),
     'sale' => __('Sale', 'badges-woo'),
@@ -22,6 +23,7 @@ $automatic_rule_labels = array(
 ?>
 
 <div class="woobadge-config">
+    <p class="description"><?= esc_html__('Priority: product badge, selected preset, then the first matching global preset. To use a preset, set the product position to None and select a preset below. None only disables the product badge, not presets.', 'badges-woo') ?></p>
     <h4><?=__('Position', 'badges-woo')?></h4>
     <div class="row">
 
@@ -29,8 +31,8 @@ $automatic_rule_labels = array(
             
             foreach($positions as $pos) {
                 $preview = '<span class="woobadges-position-preview"><span class="woobadges-position-badge woobadges-preview-'.esc_attr($pos).'"></span></span>';
-                echo '<label class="col featured-image-woobadges" style="background-image:url('.get_the_post_thumbnail_url($post->ID).')">
-                    <input type="radio" class="woobadges_radio" name="woobadges_position" '.checked($position_checked, $pos, false).' value="'.$pos.'">
+                echo '<label class="col featured-image-woobadges" style="background-image:url('.esc_url(get_the_post_thumbnail_url($post->ID)).')">
+                    <input type="radio" class="woobadges_radio" name="woobadges_position" '.checked($position_checked, $pos, false).' value="'.esc_attr($pos).'">
                     '.$preview.'
                 </label>';
             }
@@ -41,16 +43,16 @@ $automatic_rule_labels = array(
     <br>
     <div>
         <div class="woobadges-input">
-            <h4><?=__('Opacity', 'badges-woo')?> <span class="woobadges_opacity_value"><?= isset($woobadges_values['opacity']) ? $woobadges_values['opacity'] : '1' ?></span></h4>
+            <h4><?=__('Opacity', 'badges-woo')?> <span class="woobadges_opacity_value"><?= esc_attr(isset($woobadges_values['opacity']) ? $woobadges_values['opacity'] : '1') ?></span></h4>
             <div class="slidecontainer">
-                <input type="range" name="woobadges_opacity" min="0" max="1" step="0.1" value="<?= isset($woobadges_values['opacity']) ? $woobadges_values['opacity'] : '1' ?>" class="slider" data-target="woobadges_opacity_value">
+                <input type="range" name="woobadges_opacity" min="0" max="1" step="0.1" value="<?= esc_attr(isset($woobadges_values['opacity']) ? $woobadges_values['opacity'] : '1') ?>" class="slider" data-target="woobadges_opacity_value">
                 <p></p>
             </div>
         </div>
 
         <div class="woobadges-input">
             <h4><?=__('Text', 'badges-woo')?></h4>
-            <input type="text" name="woobadges_text" placeholder="Sale Off 50%" value="<?= isset($woobadges_values['text']) ? $woobadges_values['text'] : '' ?>" />
+            <input type="text" name="woobadges_text" placeholder="Sale Off 50%" value="<?= esc_attr(isset($woobadges_values['text']) ? $woobadges_values['text'] : '') ?>" />
             <p class="description"><?= __('You can insert emojis, <a target="_blank" href="https://getemoji.com/">see link</a>', 'badges-woo')?></p>
         </div>
 
@@ -84,7 +86,7 @@ $automatic_rule_labels = array(
                     <option value="<?= esc_attr($preset_id) ?>" <?= selected($preset_checked, $preset_id, false) ?>><?= esc_html($preset_name) ?></option>
                 <?php } ?>
             </select>
-            <p class="description"><?= __('If the product badge does not apply, the selected preset will be used.', 'badges-woo')?></p>
+            <p class="description"><?= __('The selected preset is checked only when the product badge does not apply. Its own condition and visibility settings are used. If it is disabled or does not apply, global presets are checked.', 'badges-woo')?></p>
         </div>
 
         <div class="woobadges-input">
@@ -94,38 +96,38 @@ $automatic_rule_labels = array(
                     <option value="<?= esc_attr($automatic_rule) ?>" <?= selected($automatic_rule_checked, $automatic_rule, false) ?>><?= esc_html(isset($automatic_rule_labels[$automatic_rule]) ? $automatic_rule_labels[$automatic_rule] : $automatic_rule) ?></option>
                 <?php } ?>
             </select>
-            <p class="description"><?= __('Manual text keeps priority unless you switch the source to automatic.', 'badges-woo')?></p>
+            <p class="description"><?= __('Manual source with text ignores this condition. Automatic source requires a matching condition. Empty text uses the condition label when it matches.', 'badges-woo')?></p>
         </div>
 
         <div class="woobadges-input">
             <h4><?=__('Background Color', 'badges-woo')?></h4>
-            <input type="text" name="woobadges_background" class="colorPicker" data-default-color="#333" value="<?= isset($woobadges_values['background']) ? $woobadges_values['background'] : '' ?>" />
+            <input type="text" name="woobadges_background" class="colorPicker" data-default-color="#333" value="<?= esc_attr(isset($woobadges_values['background']) ? $woobadges_values['background'] : '') ?>" />
         </div>
 
         <div class="woobadges-input">
             <h4><?=__('Color', 'badges-woo')?></h4>
-            <input type="text" name="woobadges_color" class="colorPicker" data-default-color="#FFF" value="<?= isset($woobadges_values['color']) ? $woobadges_values['color'] : '' ?>" />
+            <input type="text" name="woobadges_color" class="colorPicker" data-default-color="#FFF" value="<?= esc_attr(isset($woobadges_values['color']) ? $woobadges_values['color'] : '') ?>" />
         </div>
 
         <div class="woobadges-input">
             <h4><?=__('Font Size', 'badges-woo')?></h4>
-            <input type="text" name="woobadges_fontSize" placeholder="12px" value="<?= isset($woobadges_values['fontSize']) ? $woobadges_values['fontSize'] : '12px' ?>" />
+            <input type="text" name="woobadges_fontSize" placeholder="12px" value="<?= esc_attr(isset($woobadges_values['fontSize']) ? $woobadges_values['fontSize'] : '12px') ?>" />
         </div>
 
         <div class="woobadges-input">
             <h4><?=__('Font Weight', 'badges-woo')?></h4>
-            <input type="text" name="woobadges_fontWeight" placeholder="normal" value="<?= isset($woobadges_values['fontWeight']) ? $woobadges_values['fontWeight'] : 'normal' ?>" />
+            <input type="text" name="woobadges_fontWeight" placeholder="normal" value="<?= esc_attr(isset($woobadges_values['fontWeight']) ? $woobadges_values['fontWeight'] : 'normal') ?>" />
         </div>
         
         <div class="woobadges-input">
             <h4><?=__('Show on single product page', 'badges-woo')?></h4>
-            <input type="checkbox" name="woobadges_showSingle" value="1" <?= isset($woobadges_values['showSingle']) ? 'checked="checked"' : '' ?> />
+            <input type="checkbox" name="woobadges_showSingle" value="1" <?= !empty($woobadges_values['showSingle']) ? 'checked="checked"' : '' ?> />
         </div>
 
         <div class="woobadges-input">
-            <h4><?=__('Zoom for single product page', 'badges-woo')?> <span class="woobadges_zoom_value"><?= isset($woobadges_values['zoomSingleProduct']) ? $woobadges_values['zoomSingleProduct'] : '1' ?></span></h4>
+            <h4><?=__('Zoom for single product page', 'badges-woo')?> <span class="woobadges_zoom_value"><?= esc_attr(isset($woobadges_values['zoomSingleProduct']) ? $woobadges_values['zoomSingleProduct'] : '1') ?></span></h4>
             <div class="slidecontainer">
-                <input type="range" name="woobadges_zoomSingleProduct" min="0.5" max="5" step="0.1" value="<?= isset($woobadges_values['zoomSingleProduct']) ? $woobadges_values['zoomSingleProduct'] : '1' ?>" class="slider" data-target="woobadges_zoom_value">
+                <input type="range" name="woobadges_zoomSingleProduct" min="0.5" max="5" step="0.1" value="<?= esc_attr(isset($woobadges_values['zoomSingleProduct']) ? $woobadges_values['zoomSingleProduct'] : '1') ?>" class="slider" data-target="woobadges_zoom_value">
                 <p></p>
             </div>
         </div>

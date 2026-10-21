@@ -13,7 +13,7 @@
     transition: width 0.4s ease, height 0.4s ease
 }
 
-.badge {
+.badge-overlay .badge {
     margin: 0;
     padding: 0;
     color: #FFF;
@@ -26,15 +26,15 @@
     background: #333;
 }
 
-.badge.badge-shape-rounded {
+.badge-overlay .badge.badge-shape-rounded {
     border-radius: 18px;
 }
 
-.badge.badge-shape-pill {
+.badge-overlay .badge.badge-shape-pill {
     border-radius: 999px;
 }
 
-.badge.badge-shape-circle {
+.badge-overlay .badge.badge-shape-circle {
     min-width: 72px;
     min-height: 72px;
     display: inline-flex;
@@ -44,59 +44,59 @@
     padding: 10px;
 }
 
-.badge.badge-shape-diamond {
+.badge-overlay .badge.badge-shape-diamond {
     clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
     padding: 18px 20px;
 }
 
-.badge.badge-shape-diamond::before,
-.badge.badge-shape-diamond::after {
+.badge-overlay .badge.badge-shape-diamond::before,
+.badge-overlay .badge.badge-shape-diamond::after {
     display: none;
 }
 
-.badge.badge-shape-star {
+.badge-overlay .badge.badge-shape-star {
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     padding: 22px 18px;
 }
 
-.badge.badge-shape-hexagon {
+.badge-overlay .badge.badge-shape-hexagon {
     clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
     padding: 16px 20px;
 }
 
-.badge.badge-shape-ticket {
+.badge-overlay .badge.badge-shape-ticket {
     clip-path: polygon(0 0, 100% 0, 100% 28%, 92% 36%, 100% 44%, 100% 100%, 0 100%, 0 44%, 8% 36%, 0 28%);
     padding: 14px 18px;
 }
 
-.badge.badge-shape-bookmark {
+.badge-overlay .badge.badge-shape-bookmark {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%);
     padding: 12px 16px 18px;
 }
 
-.badge.badge-shape-burst {
+.badge-overlay .badge.badge-shape-burst {
     clip-path: polygon(50% 0%, 62% 12%, 78% 4%, 82% 20%, 98% 18%, 90% 34%, 100% 50%, 90% 66%, 98% 82%, 82% 80%, 78% 96%, 62% 88%, 50% 100%, 38% 88%, 22% 96%, 18% 80%, 2% 82%, 10% 66%, 0% 50%, 10% 34%, 2% 18%, 18% 20%, 22% 4%, 38% 12%);
     padding: 20px 18px;
 }
 
-.badge.badge-shape-circle::before,
-.badge.badge-shape-circle::after,
-.badge.badge-shape-diamond::before,
-.badge.badge-shape-diamond::after,
-.badge.badge-shape-star::before,
-.badge.badge-shape-star::after,
-.badge.badge-shape-hexagon::before,
-.badge.badge-shape-hexagon::after,
-.badge.badge-shape-ticket::before,
-.badge.badge-shape-ticket::after,
-.badge.badge-shape-bookmark::before,
-.badge.badge-shape-bookmark::after,
-.badge.badge-shape-burst::before,
-.badge.badge-shape-burst::after {
+.badge-overlay .badge.badge-shape-circle::before,
+.badge-overlay .badge.badge-shape-circle::after,
+.badge-overlay .badge.badge-shape-diamond::before,
+.badge-overlay .badge.badge-shape-diamond::after,
+.badge-overlay .badge.badge-shape-star::before,
+.badge-overlay .badge.badge-shape-star::after,
+.badge-overlay .badge.badge-shape-hexagon::before,
+.badge-overlay .badge.badge-shape-hexagon::after,
+.badge-overlay .badge.badge-shape-ticket::before,
+.badge-overlay .badge.badge-shape-ticket::after,
+.badge-overlay .badge.badge-shape-bookmark::before,
+.badge-overlay .badge.badge-shape-bookmark::after,
+.badge-overlay .badge.badge-shape-burst::before,
+.badge-overlay .badge.badge-shape-burst::after {
     display: none;
 }
 
-.badge:not(.left):not(.right)::before, .badge:not(.left):not(.right)::after {
+.badge-overlay .badge:not(.left):not(.right)::before, .badge-overlay .badge:not(.left):not(.right)::after {
     content: '';
     position: absolute;
     top: 0;
@@ -107,16 +107,16 @@
     min-width: 55px
 }
 
-.badge::before {
+.badge-overlay .badge::before {
     right: 100%
 }
 
-.badge::after {
+.badge-overlay .badge::after {
     left: 100%
 }
 
 /* ================== Badge Position CSS ========================*/
-.badge.left-top {
+.badge-overlay .badge.left-top {
     position: absolute;
     top: 0;
     left: 0;
@@ -128,7 +128,7 @@
     transform-origin: top right;
 }
 
-.badge.right-top {
+.badge-overlay .badge.right-top {
     position: absolute;
     top: 0;
     right: 0;
@@ -140,7 +140,7 @@
     transform-origin: top left;
 }
 
-.badge.left-bottom {
+.badge-overlay .badge.left-bottom {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -152,7 +152,7 @@
     transform-origin: bottom right;
 }
 
-.badge.right-bottom {
+.badge-overlay .badge.right-bottom {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -164,7 +164,7 @@
     transform-origin: bottom left;
 }
 
-.badge.top {
+.badge-overlay .badge.top {
     position: absolute;
     top: 0;
     left: 0;
@@ -172,19 +172,19 @@
     text-align: center;
 }
 
-.badge.top-left {
+.badge-overlay .badge.top-left {
     position: absolute;
     top: 12px;
     left: 12px;
 }
 
-.badge.top-right {
+.badge-overlay .badge.top-right {
     position: absolute;
     top: 12px;
     right: 12px;
 }
 
-.badge.center {
+.badge-overlay .badge.center {
     position: absolute;
     top: 50%;
     left: 0;
@@ -195,7 +195,7 @@
     transform: translateX(0%) translateY(-50%) rotate(0deg);
 }
 
-.badge.center-left {
+.badge-overlay .badge.center-left {
     position: absolute;
     top: 50%;
     left: 12px;
@@ -204,7 +204,7 @@
     transform: translateY(-50%);
 }
 
-.badge.center-right {
+.badge-overlay .badge.center-right {
     position: absolute;
     top: 50%;
     right: 12px;
@@ -213,7 +213,7 @@
     transform: translateY(-50%);
 }
 
-.badge.bottom {
+.badge-overlay .badge.bottom {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -221,19 +221,19 @@
     text-align: center;
 }
 
-.badge.bottom-left {
+.badge-overlay .badge.bottom-left {
     position: absolute;
     bottom: 12px;
     left: 12px;
 }
 
-.badge.bottom-right {
+.badge-overlay .badge.bottom-right {
     position: absolute;
     bottom: 12px;
     right: 12px;
 }
 
-.badge.left {
+.badge-overlay .badge.left {
     position: absolute;
     top: 0;
     left: 0;
@@ -243,7 +243,7 @@
     writing-mode: vertical-lr;
 }
 
-.badge.right {
+.badge-overlay .badge.right {
     position: absolute;
     top: 0;
     right: 0;

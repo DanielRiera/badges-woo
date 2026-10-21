@@ -169,3 +169,240 @@ msgstr ""
 #: woobadges.php:379
 msgid "Badge Configuration"
 msgstr ""
+
+msgid "New preset"
+msgstr ""
+
+msgid "Move up"
+msgstr ""
+
+msgid "Move down"
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+msgid "Enable preset"
+msgstr ""
+
+msgid "Disable to stop using this preset everywhere without deleting its design or product assignments."
+msgstr ""
+
+msgid "When does it apply?"
+msgstr ""
+
+msgid "When selected in a product"
+msgstr ""
+
+msgid "Use custom text"
+msgstr ""
+
+msgid "Only when the rule matches"
+msgstr ""
+
+msgid "Custom text is used as written. Leave it empty to use the rule label, such as Sale or New, when the rule matches."
+msgstr ""
+
+msgid "Product condition"
+msgstr ""
+
+msgid "Apply to all products matching this condition"
+msgstr ""
+
+msgid "No product assignment is needed. A product badge or a selected preset takes priority. The first matching global preset in this list wins."
+msgstr ""
+
+msgid "Appearance and visibility"
+msgstr ""
+
+msgid "Design preview. Rules are evaluated for each product on the storefront."
+msgstr ""
+
+msgid "Choose a visible position. None hides this preset in both product lists and product pages."
+msgstr ""
+
+msgid "Also show on the product page"
+msgstr ""
+
+msgid "Product lists show the badge when it applies. Enable this option to also show it over the main product gallery."
+msgstr ""
+
+msgid "Create a design once, assign it to products or apply it automatically with a condition."
+msgstr ""
+
+msgid "Which badge is shown?"
+msgstr ""
+
+msgid "Product badge: the badge configured directly in the product is checked first."
+msgstr ""
+
+msgid "Selected preset: used when the product badge does not apply. Select it in the product badge settings."
+msgstr ""
+
+msgid "Global preset: if neither applies, the first enabled preset matching its global condition is used, from top to bottom."
+msgstr ""
+
+msgid "Only one badge is chosen. Its own visibility setting determines whether it also appears on the product page; a hidden badge does not trigger another preset."
+msgstr ""
+
+msgid "Examples: manual assignment and automatic application"
+msgstr ""
+
+msgid "Manual: enter Limited edition, choose a position, leave the condition as None and global application off. Save, then select this preset in the products you want."
+msgstr ""
+
+msgid "Automatic: choose Sale and enable global application. All sale products without a higher-priority badge get this preset. Custom text is optional."
+msgstr ""
+
+msgid "Conditional assignment: select Only when the rule matches, choose Out of stock and leave global application off. Assign it to specific products; it appears only while they are out of stock."
+msgstr ""
+
+msgid "New uses products created within the last 30 days by default. Sale follows WooCommerce sale status, Featured follows the featured flag, and Out of stock follows stock availability."
+msgstr ""
+
+msgid "Hides the native sale badge only when a custom badge is visible in that context. If the custom badge is disabled on the product page, the native sale badge is kept there."
+msgstr ""
+
+msgid "Your presets"
+msgstr ""
+
+msgid "Open a preset to edit it. Move presets up or down to set global priority. Duplicates are created disabled so they do not affect the store until you enable them."
+msgstr ""
+
+msgid "No presets yet. Add your first preset, name it and choose how it applies."
+msgstr ""
+
+msgid "Save changes"
+msgstr ""
+
+msgid "Creation, edits, order, activation and removal take effect only after saving changes."
+msgstr ""
+
+msgid "Disabled"
+msgstr ""
+
+msgid "Hidden: choose a position"
+msgstr ""
+
+msgid "Global application"
+msgstr ""
+
+msgid "Product assignment"
+msgstr ""
+
+msgid "Applies to all products matching: %s. Higher-priority product badges and selected presets win."
+msgstr ""
+
+msgid "When assigned to a product, appears only if it matches: %s."
+msgstr ""
+
+msgid "Appears with your custom text when selected in a product. The condition does not restrict this manual assignment."
+msgstr ""
+
+msgid "With empty text, the condition must match and its label is used."
+msgstr ""
+
+msgid "This preset is disabled. Its design and assignments are kept; other eligible presets may apply instead."
+msgstr ""
+
+msgid "Choose a condition for automatic application."
+msgstr ""
+
+msgid "Enter badge text or choose a condition to use its label."
+msgstr ""
+
+msgid "Badge text"
+msgstr ""
+
+msgid "%s (copy)"
+msgstr ""
+
+msgid "Unsaved changes"
+msgstr ""
+
+msgid "Remove this preset? Products assigned to it may use a matching global preset instead. This takes effect after saving."
+msgstr ""
+
+msgid "Priority: product badge, selected preset, then the first matching global preset. To use a preset, set the product position to None and select a preset below. None only disables the product badge, not presets."
+msgstr ""
+
+msgid "The selected preset is checked only when the product badge does not apply. Its own condition and visibility settings are used. If it is disabled or does not apply, global presets are checked."
+msgstr ""
+
+msgid "Manual source with text ignores this condition. Automatic source requires a matching condition. Empty text uses the condition label when it matches."
+msgstr ""
+
+msgid "Center"
+msgstr ""
+
+msgid "Top"
+msgstr ""
+
+msgid "Left"
+msgstr ""
+
+msgid "Bottom"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Top left ribbon"
+msgstr ""
+
+msgid "Top right ribbon"
+msgstr ""
+
+msgid "Bottom left ribbon"
+msgstr ""
+
+msgid "Bottom right ribbon"
+msgstr ""
+
+msgid "Top left"
+msgstr ""
+
+msgid "Top right"
+msgstr ""
+
+msgid "Bottom left"
+msgstr ""
+
+msgid "Bottom right"
+msgstr ""
+
+msgid "Center left"
+msgstr ""
+
+msgid "Center right"
+msgstr ""
+
+msgid "Rectangle"
+msgstr ""
+
+msgid "Rounded"
+msgstr ""
+
+msgid "Pill"
+msgstr ""
+
+msgid "Circle"
+msgstr ""
+
+msgid "Diamond"
+msgstr ""
+
+msgid "Star"
+msgstr ""
+
+msgid "Hexagon"
+msgstr ""
+
+msgid "Ticket"
+msgstr ""
+
+msgid "Bookmark"
+msgstr ""
+
+msgid "Burst"
+msgstr ""

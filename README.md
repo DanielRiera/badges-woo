@@ -2,15 +2,15 @@
 Contributors: DanielRiera
 Donate link: https://www.paypal.com/donate/?hosted_button_id=EZ67DG78KMXWQ
 Tags: badges, woocommerce, product badges, sales, conversion
-Version: 1.2.1
+Version: 1.2.2
 Requires at least: 5.0
-Tested up to: 6.9.4
+Tested up to: 7.1.3
 WC requires at least: 3.0
 WC tested up to: 10.6.1
 Required WP: 5.0
-Tested WP: 6.9.4
+Tested WP: 7.1.3
 Requires PHP: 8.0
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,6 +121,25 @@ Examples:
 Yes. Translation files are included in `/languages`, and the plugin uses the `badges-woo` text domain.
 
 == Changelog ==
+
+= 1.2.2 =
+- Verified compatibility with WordPress 7.1.3 and WooCommerce 10.6.1 on PHP 8.2.28
+- Updated settings with Material-inspired surfaces, outlined fields, switches and action buttons
+- Improved preset management with collapsible editors, duplication, activation and priority controls
+- Added live design previews, contextual application guidance and save validation
+- Explained badge priority and product assignment in settings and product editing
+- Escaped product badge fields in the editor and validated badge CSS values
+- Fixed the single product visibility checkbox when reopening products
+- Secured product badge saving and allowed users with product editing permissions
+- Fixed preset field collisions after removing and adding presets
+- Added unique, stable preset identifiers
+- Fixed automatic preset rules with custom text
+- Kept the default WooCommerce sale badge when the custom badge is disabled on the product page
+- Fixed initialization with network-activated WooCommerce
+- Limited admin assets to badge settings and product editing screens
+- Limited the frontend script to product pages and removed the Flexslider dependency
+- Scoped badge styles to plugin overlays to avoid theme conflicts
+- Synchronized plugin and asset versions
 
 = 1.2.1 = 
 -  Declare compatibility with Custom order table WooCommerce
